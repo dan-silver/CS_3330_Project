@@ -47,6 +47,11 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		addWindowListener(this);
 	}
 
+
+	public void setPausedBtnText(String text) {
+		pauseButton.setText(text);
+	}
+
 	protected boolean keyListenerAdded = false;
 
 	// Size

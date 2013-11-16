@@ -145,9 +145,12 @@ public class ATC extends Applet {
 	}
 
 	public void pauseATC() {
-		if (getData().paused)
+		if (getData().paused) {
 			getData().paused = false;
-		else
+			if (ui instanceof ATCUI_impl)  ((ATCUI_impl) ui).setPausedBtnText("Pause");
+		} else {
 			getData().paused = true;
+			if (ui instanceof ATCUI_impl)  ((ATCUI_impl) ui).setPausedBtnText("Paused");
+		}
 	}
 };
