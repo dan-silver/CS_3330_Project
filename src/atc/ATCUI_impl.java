@@ -121,6 +121,7 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 	JLabel inputArea;
 	JPanel controlArea;
 	JButton newButton;
+	JButton pauseButton;
 	JButton exitButton;
 
 	// Planes
@@ -206,7 +207,14 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		exitButton.setActionCommand("Exit");
 		exitButton.addActionListener(this);
 		exitButton.setFocusable(false); // Don't steal Frame's focus
+		
+		pauseButton = new JButton("Pause");
+		pauseButton.setActionCommand("Pause");
+		pauseButton.addActionListener(this);
+		pauseButton.setFocusable(false); // Don't steal Frame's focus
+		
 		controlArea.add(newButton);
+		controlArea.add(pauseButton);
 		controlArea.add(exitButton);
 		getContentPane().add(controlArea, BorderLayout.NORTH);
 
