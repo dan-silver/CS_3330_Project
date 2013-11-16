@@ -236,6 +236,12 @@ public boolean paused = false;
   synchronized(this) {
       // get next plane id.
       plane_id = next_plane;
+      
+      boolean l_flag = false;
+      if (plane_id == 11 && planes[8] != null && planes[8].getIdChar() == 'I') {
+    	  l_flag = true;
+      }
+      
       if( planes[plane_id] != null )
       {
         plane_id++;
@@ -287,9 +293,14 @@ public boolean paused = false;
 
       if( ATC.debug_flag ) System.out.println( "NP: found." ); //DEBUG
 
-      Plane new_plane = 
-        new Plane( o1.pos, o1.dir, o1.alt, rand.nextInt(2)+1, o2 );
-
+      Plane new_plane;
+      if (l_flag) {
+    	  new_plane = new Plane( o1.pos, o1.dir, o1.alt, 2, o2 );
+      } else {
+	      new_plane = new Plane( o1.pos, o1.dir, o1.alt, rand.nextInt(2)+1, o2 );
+      }
+      l_flag = false;
+      
       new_plane.id = plane_id;
       planes[plane_id] = new_plane;
       next_plane = plane_id+1;
