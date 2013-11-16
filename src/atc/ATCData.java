@@ -160,13 +160,15 @@ public class ATCData extends Object
 
   //Timer
   java.util.Timer timer = null;
+
+public boolean paused = false;
   class ATCTask extends java.util.TimerTask {
     protected ATCData data;
     public ATCTask( ATCData d ) { data = d; }
     public void run() { 
       try
       { 
-        data.tick(); 
+        if (!data.paused ) data.tick();
       } 
       catch( ATCGameOverException e ) 
       { 

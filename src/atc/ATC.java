@@ -145,6 +145,9 @@ public class ATC extends Applet {
 	}
 
 	public void pauseATC() {
-		System.out.println("Pausing game...");
+		if (getData().paused)
+			getData().paused = false;
+		else
+			getData().paused = true;
 	}
 };
