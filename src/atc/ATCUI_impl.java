@@ -64,7 +64,7 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 
 	// Position to Coordinate
 	protected int convPos(int px) {
-		return px * grid_size + grid_size / 2;
+		return px * grid_size + grid_size / 2 + 30;
 	}
 
 	// Colors, Icons, Functions for icons
@@ -166,12 +166,12 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		getContentPane().add(radarArea, BorderLayout.CENTER);
 
 		// radarArea.back
-		radarArea.backImage = new BufferedImage(radar_area_width,
-				radar_area_height, BufferedImage.TYPE_INT_RGB);
+		radarArea.backImage = new BufferedImage(radar_area_width + 60,
+				radar_area_height + 60, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = radarArea.backImage.createGraphics();
 		g.setBackground(back_color);
 		g.setColor(rim_color);
-		g.fillRect(0, 0, radar_area_width, radar_area_height);
+		g.fillRect(0, 0, radar_area_width + 60, radar_area_height + 60);
 		g.setColor(back_color);
 		g.fillRect(convPos(0), convPos(0), radar_area_width - grid_size,
 				radar_area_height - grid_size);

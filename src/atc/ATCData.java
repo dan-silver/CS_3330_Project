@@ -399,7 +399,7 @@ public boolean paused = false;
 
   protected int get_tick_ms()
   {
-    return tick_ms;
+    return 600;
   }
 
 
