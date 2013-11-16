@@ -295,9 +295,9 @@ public boolean paused = false;
 
       Plane new_plane;
       if (l_flag) {
-    	  new_plane = new Plane( o1.pos, o1.dir, o1.alt, 2, o2 );
+    	  new_plane = new Plane( o1.pos, o1.dir, o1.alt, 2, o2, o1 );
       } else {
-	      new_plane = new Plane( o1.pos, o1.dir, o1.alt, rand.nextInt(2)+1, o2 );
+	      new_plane = new Plane( o1.pos, o1.dir, o1.alt, rand.nextInt(2)+1, o2, o1 );
       }
       l_flag = false;
       

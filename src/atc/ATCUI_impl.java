@@ -373,8 +373,8 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 
 	protected String getPlaneInfoText(Plane p) {
 		String rs = new String(" ");
-		rs += (new Character(p.getIdChar())).toString() + p.alt + " ";
-		rs += p.destination.getName() + " ";
+		rs += (new Character(p.getIdChar())).toString() + p.alt + "   " + p.takeoff_location.getName();
+		rs += "   "+p.destination.getName() + " ";
 		if (p.dir_cmd != null) {
 			if (p.dir_cmd instanceof CircleCommand) {
 				rs += "C";

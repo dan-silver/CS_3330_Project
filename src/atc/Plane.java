@@ -27,6 +27,7 @@ public class Plane extends MovingObj
   public ALTCommand alt_cmd = null;
   public DIRCommand dir_cmd = null;
   public StaticObj destination = null;
+  public StaticObj takeoff_location = null;
 
   protected Plane() { super(); }
   public Plane( Plane ao ) 
@@ -38,9 +39,10 @@ public class Plane extends MovingObj
     }
 
   public Plane
-    ( Position p, Direction d, int altitude, int i_speed, StaticObj des )
+    ( Position p, Direction d, int altitude, int i_speed, StaticObj des, StaticObj takeoff_location )
   {
     super( p, d, altitude, i_speed );
+	this.takeoff_location = takeoff_location;
     if( altitude == 0 )
     {
       waiting_flag = true;
