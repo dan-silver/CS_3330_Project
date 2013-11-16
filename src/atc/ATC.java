@@ -25,120 +25,126 @@ import java.io.*;
 /**
  * Main ATC applet or running object.
  */
-public class ATC extends Applet
-{
-  public static boolean debug_flag = false; //Debug
+public class ATC extends Applet {
+	public static boolean debug_flag = false; // Debug
 
-  /* View, Controller and Model = UI, Inputhandlder and Data */
-  protected ATCUI ui = null;
-  protected ATCInputhandler input_handler = null;
-  protected ATCData data = null;
+	/* View, Controller and Model = UI, Inputhandlder and Data */
+	protected ATCUI ui = null;
+	protected ATCInputhandler input_handler = null;
+	protected ATCData data = null;
 
-  protected boolean applet_flag = false;
+	protected boolean applet_flag = false;
 
-  public String codeBase = null;
+	public String codeBase = null;
 
-  protected String game = null; /* name of the game config */
-  protected Reader input_reader = null;
+	protected String game = null; /* name of the game config */
+	protected Reader input_reader = null;
 
-  public ATC() { super(); }
-  public ATC( String s ) { super(); game = new String(s); }
-  public ATC( ATC ao ) 
-  { 
-    super( ); 
-    ui = ao.ui;
-    input_handler = ao.input_handler;
-    data = ao.data;
-    applet_flag = ao.applet_flag;
-  }
+	public ATC() {
+		super();
+	}
 
-  public void init()
-  {
-    applet_flag = true;
-    codeBase = getCodeBase().toString();
-    //...
-  }
-  public void start()
-  {
-    startATC();
-  }
-  public void stop()
-  {
-    stopATC();
-  }
+	public ATC(String s) {
+		super();
+		game = new String(s);
+	}
 
-  /**
-   * Get game config then create Data-UI-Inputhandler and init Data.
-   */
-  public void startATC()
-  {
-    if( !applet_flag )
-    {
-      codeBase = ClassLoader.getSystemResource(".").toString();
-      // Config read from file
-      try{
-        input_reader = new FileReader("config/"+game );
-      }catch( FileNotFoundException e )
-      {
-        System.err.println("Cannot open config file! " + e.getMessage());
-        System.exit(0);
-      }
-    }
-    else
-    {
-      // Game and Config from parameter string
-      game = getParameter("GAME");
-      input_reader = new StringReader( getParameter("CONFIG") );
-    }
+	public ATC(ATC ao) {
+		super();
+		ui = ao.ui;
+		input_handler = ao.input_handler;
+		data = ao.data;
+		applet_flag = ao.applet_flag;
+	}
 
-    if( input_reader == null ) return;
+	public void init() {
+		applet_flag = true;
+		codeBase = getCodeBase().toString();
+		// ...
+	}
 
-    printCopyright();
+	public void start() {
+		startATC();
+	}
 
-    // Here to switch between two GUIs
-    ui = new ATCUI_impl( this );
-    // ui = new ATCUI_impl_awt( this );
+	public void stop() {
+		stopATC();
+	}
 
-    input_handler = new ATCInputhandler_impl( this );
-    data = new ATCData( this );
-      data.setConfig( new ATCConfig_from_stream( game, input_reader ) );
-      data.setRecord( new ATCRecord_impl() );
-      data.initData();
-  }
+	/**
+	 * Get game config then create Data-UI-Inputhandler and init Data.
+	 */
+	public void startATC() {
+		if (!applet_flag) {
+			codeBase = ClassLoader.getSystemResource(".").toString();
+			// Config read from file
+			try {
+				input_reader = new FileReader("config/" + game);
+			} catch (FileNotFoundException e) {
+				System.err
+						.println("Cannot open config file! " + e.getMessage());
+				System.exit(0);
+			}
+		} else {
+			// Game and Config from parameter string
+			game = getParameter("GAME");
+			input_reader = new StringReader(getParameter("CONFIG"));
+		}
 
-  /**
-   * Clean Data, Close UI, and remove everything.
-   */
-  public synchronized void stopATC()
-  {
-    if( data != null )
-      data.gameOver( null );
-    if( ui != null )
-      ui.close();
-    ui = null;
-    input_handler = null;
-    data = null;
+		if (input_reader == null)
+			return;
 
-    if( !applet_flag )
-      System.exit(0);
-  }
+		printCopyright();
 
-  public ATCUI getUI()
-  { return ui; }
-  public ATCInputhandler getInputhandler()
-  { return input_handler; }
-  public ATCData getData()
-  { return data; }
+		// Here to switch between two GUIs
+		ui = new ATCUI_impl(this);
+		// ui = new ATCUI_impl_awt( this );
 
-  protected void printCopyright()
-  {
-    System.out.println("ATCJ: Air Traffic Controller Game");
-    System.out.println("Copyright (C) 2003 Zheli Erwin Yu.");
-    System.out.println("This is free software; see the source for copying conditions.  There is NO");
-    System.out.println("warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n");
-  }
-public void pauseATC() {
-    System.out.println("Pausing game...");
-}
+		input_handler = new ATCInputhandler_impl(this);
+		data = new ATCData(this);
+		data.setConfig(new ATCConfig_from_stream(game, input_reader));
+		data.setRecord(new ATCRecord_impl());
+		data.initData();
+	}
+
+	/**
+	 * Clean Data, Close UI, and remove everything.
+	 */
+	public synchronized void stopATC() {
+		if (data != null)
+			data.gameOver(null);
+		if (ui != null)
+			ui.close();
+		ui = null;
+		input_handler = null;
+		data = null;
+
+		if (!applet_flag)
+			System.exit(0);
+	}
+
+	public ATCUI getUI() {
+		return ui;
+	}
+
+	public ATCInputhandler getInputhandler() {
+		return input_handler;
+	}
+
+	public ATCData getData() {
+		return data;
+	}
+
+	protected void printCopyright() {
+		System.out.println("ATCJ: Air Traffic Controller Game");
+		System.out.println("Copyright (C) 2003 Zheli Erwin Yu.");
+		System.out
+				.println("This is free software; see the source for copying conditions.  There is NO");
+		System.out
+				.println("warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n");
+	}
+
+	public void pauseATC() {
+		System.out.println("Pausing game...");
+	}
 };
-
