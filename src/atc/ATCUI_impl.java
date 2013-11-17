@@ -125,9 +125,7 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 	Label infoTopLine;
 	JLabel inputArea;
 	JPanel controlArea;
-	JButton newButton;
-	JButton pauseButton;
-	JButton exitButton;
+	JButton newButton, pauseButton, exitButton, saveButton;
 
 	// Planes
 	class UIPlane extends Object {
@@ -218,7 +216,14 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		pauseButton.addActionListener(this);
 		pauseButton.setFocusable(false); // Don't steal Frame's focus
 		
+		
+		saveButton = new JButton("Save");
+		saveButton.setActionCommand("Save");
+		saveButton.addActionListener(this);
+		saveButton.setFocusable(false); // Don't steal Frame's focus
+		
 		controlArea.add(newButton);
+		controlArea.add(saveButton);
 		controlArea.add(pauseButton);
 		controlArea.add(exitButton);
 		getContentPane().add(controlArea, BorderLayout.NORTH);
