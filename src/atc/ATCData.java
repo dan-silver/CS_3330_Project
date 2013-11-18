@@ -436,10 +436,9 @@ public class ATCData extends Object {
 		String line = null;
 		for (Plane p : planeHistory) {
 			if (p != null) {
-				line = (p.takeoff_location.pos.x + " "
-						+ p.takeoff_location.pos.y + " " + p.destination.pos.x
-						+ " " + p.destination.pos.y + " " + p.getSpawnTime()
-						+ " " + p.getIdChar());
+				line = (p.takeoff_location.id + " " + p.destination.id
+						+ " " + p.getSpawnTime() + " "+ p
+						.getIdChar());
 				writer.println(line);
 				System.out.println(line);
 			}

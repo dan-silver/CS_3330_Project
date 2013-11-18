@@ -287,6 +287,11 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
     {
         atc_obj.getData().save();
     }
+    else if( "Load".equals( command ) )
+    {
+        reset();
+        atc_obj.getData().start();
+    }
     return true;
   }
 
