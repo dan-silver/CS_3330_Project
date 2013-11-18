@@ -76,8 +76,9 @@ public class ATCData extends Object {
 
 	protected int tick_count = 0;
 	protected int safe_plane_count = 0;
-	protected long seed = System.currentTimeMillis();
-	protected Random rand = new Random(seed);
+
+	protected long seed;
+	protected Random rand = null;
 
 	protected long start_time_ms = 0;
 	protected long stop_time_ms = 0;
@@ -92,6 +93,11 @@ public class ATCData extends Object {
 	public ATCData(ATC a) {
 		super();
 		atc_obj = a;
+	}
+
+	public void generateSeed() {
+		seed = System.currentTimeMillis();
+		rand = new Random(seed);
 	}
 
 	public void setConfig(ATCConfig conf) {
@@ -189,6 +195,9 @@ public class ATCData extends Object {
 	ATCTask task = null;
 
 	public synchronized void start() {
+
+		generateSeed();
+
 		start_time_ms = System.currentTimeMillis();
 
 		int i;
