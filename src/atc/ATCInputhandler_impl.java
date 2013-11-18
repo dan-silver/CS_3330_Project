@@ -156,7 +156,7 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
         case 5: //before at clause
           if( c!='a' ) return false;
           full_cmd_str += "at ";
-          parse_state = 9;
+          parse_state = 13;
           break;
         case 6: //turn
           if( c == 't' )
@@ -255,6 +255,36 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
           }
           parse_state = 99;
           break;
+        case 11:
+        	if ( c!= 'e') return false;
+        	full_cmd_str += "exit ";
+        	parse_state = 12;
+        	break;
+        case 12:
+        	int exit_num;
+            try { exit_num = Integer.parseInt( Character.toString(c) ); }
+            catch(Exception e) { return false; }
+            if( exit_num < 0 ) return false;
+            obj_at = atc_obj.getData().getExits()[exit_num];
+            if( obj_at == null ) return false;
+            full_cmd_str += "#" + c;
+            if( full_flag )
+            {
+              ((DIRCommand)cmd).pos = obj_at.pos;
+              ((DIRCommand)cmd).pos_obj = obj_at;
+              cmd.active_flag = false;
+              if( cmd instanceof TurnCommand && obj_to != null )
+                ((TurnCommand)cmd).dir = new Direction( obj_at.pos, obj_to.pos );
+            }
+            parse_state = 99;
+             break;
+        case 13:
+        	if( c!= 'b' && c!= 'e' ) return false;
+        	if( c == 'b' )
+        		parse_state = 9;
+        	else
+        		parse_state = 11;
+        	break;
       } //end switch
     } //end while
 
