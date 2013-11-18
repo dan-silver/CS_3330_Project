@@ -349,7 +349,7 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
 			}
         }
 
-        atc_obj.getData().seed = seed;
+        atc_obj.getData().setSeed(seed);
         
         
         atc_obj.getData().start();

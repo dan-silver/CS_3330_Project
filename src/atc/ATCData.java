@@ -434,4 +434,10 @@ public class ATCData extends Object {
 		writer.close();
 
 	}
+
+	public void setSeed(Long seed2) {
+		seed = seed2;
+		System.out.println("A seed has been set: " + seed);
+		rand = new Random(seed);
+	}
 };
