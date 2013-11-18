@@ -241,12 +241,6 @@ public class ATCData extends Object {
 				// get next plane id.
 				plane_id = next_plane;
 
-				boolean l_flag = false;
-				if (plane_id == 11 && planes[8] != null
-						&& planes[8].getIdChar() == 'I') {
-					l_flag = true;
-				}
-
 				if (planes[plane_id] != null) {
 					plane_id++;
 					if (plane_id >= max_plane)
@@ -301,14 +295,8 @@ public class ATCData extends Object {
 				if (ATC.debug_flag)
 					System.out.println("NP: found."); // DEBUG
 
-				Plane new_plane;
-				if (l_flag) {
-					new_plane = new Plane(o1.pos, o1.dir, o1.alt, 2, o2, o1);
-				} else {
-					new_plane = new Plane(o1.pos, o1.dir, o1.alt,
-							rand.nextInt(2) + 1, o2, o1);
-				}
-				l_flag = false;
+				Plane new_plane = new Plane(o1.pos, o1.dir, o1.alt,
+						rand.nextInt(2) + 1, o2, o1);
 
 				new_plane.id = plane_id;
 				new_plane.setSpawnTime(tick_count);
