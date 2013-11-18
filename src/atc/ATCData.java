@@ -202,7 +202,7 @@ public class ATCData extends Object {
 
 		int i;
 		for (i = 0; i < max_plane; i++)
-			if (planes[i] != null && planes[i].takeoff_flag) {
+			if (planes[i] != null) {
 				atc_obj.getUI().PlaneRemove(planes[i]);
 				planes[i] = null;
 			}
@@ -430,7 +430,8 @@ public class ATCData extends Object {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		writer.println(seed);
+		writer.print(seed);
+		System.out.println(seed);
 		writer.close();
 
 	}
