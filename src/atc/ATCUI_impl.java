@@ -55,7 +55,7 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 
 	// Size
 	protected int grid_size = 30, icon_size = 20;
-	protected int text_height, text_gap = -10;
+	protected int text_height, text_gap = -3;
 	protected int plane_width, plane_height;
 	protected int radar_area_width, radar_area_height;
 	protected int info_area_width = 140;
@@ -375,13 +375,13 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		// uiplane.info_label.repaint();
 		if (ATC.debug_flag)
 			System.out.println("p.u.9"); // DEBUG
-		/*if (uiplane.radar_label != null) {
+		if (uiplane.radar_label != null) {
 			if (p.pos.y == 0) {
-				uiplane.radar_label.setVerticalTextPosition(JLabel.BOTTOM);
+				uiplane.radar_label.setIconTextGap(-15);
 			} else {
-				uiplane.radar_label.setVerticalTextPosition(JLabel.TOP);
+				uiplane.radar_label.setIconTextGap(text_gap);
 			}
-		}*/
+		}
 	}
 
 	protected String getPlaneText(Plane p) {
