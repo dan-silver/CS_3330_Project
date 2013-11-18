@@ -76,7 +76,8 @@ public class ATCData extends Object {
 
 	protected int tick_count = 0;
 	protected int safe_plane_count = 0;
-	protected Random rand = new Random();
+	protected long seed = System.currentTimeMillis();
+	protected Random rand = new Random(seed);
 
 	protected long start_time_ms = 0;
 	protected long stop_time_ms = 0;
@@ -307,7 +308,6 @@ public class ATCData extends Object {
 
 				// add to plane history
 				planeHistory.add(planes[plane_id]);
-				System.out.println("Added plane to history...");
 
 			} // end synchronized
 			atc_obj.getUI().PlaneNew(planes[plane_id]);
@@ -421,17 +421,7 @@ public class ATCData extends Object {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String line = null;
-		for (Plane p : planeHistory) {
-			if (p != null) {
-				line = (p.takeoff_location.id + " " + p.destination.id
-						+ " " + p.getSpawnTime() + " "+ p
-						.getIdChar());
-				writer.println(line);
-				System.out.println(line);
-			}
-		}
-
+		writer.println(seed);
 		writer.close();
 
 	}

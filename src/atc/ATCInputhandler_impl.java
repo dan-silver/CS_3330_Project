@@ -18,6 +18,11 @@
 
 package atc;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.Object;
 import java.util.*;
 
@@ -320,6 +325,24 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
     else if( "Load".equals( command ) )
     {
         reset();
+        BufferedReader br = null;
+        Long seed = null;
+		try {
+			br = new BufferedReader(new FileReader("planes.txt"));
+            seed = Long.parseLong(br.readLine());
+        } catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+            try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
+
+        atc_obj.getData().seed = seed;
         atc_obj.getData().start();
     }
     return true;
