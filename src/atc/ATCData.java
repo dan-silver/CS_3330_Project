@@ -76,6 +76,8 @@ public class ATCData extends Object {
 
 	protected int tick_count = 0;
 	protected int safe_plane_count = 0;
+	
+	
 	protected Random rand = new Random();
 
 	protected long start_time_ms = 0;
