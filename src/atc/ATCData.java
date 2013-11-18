@@ -196,7 +196,6 @@ public class ATCData extends Object {
 
 	public synchronized void start() {
 
-		generateSeed();
 
 		start_time_ms = System.currentTimeMillis();
 

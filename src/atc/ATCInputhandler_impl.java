@@ -312,6 +312,7 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
     if( "New".equals( command ) )
     {
       reset();
+      atc_obj.getData().generateSeed();
       atc_obj.getData().start();
     }
     else if( "Exit".equals( command ) )
