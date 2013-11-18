@@ -47,7 +47,6 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		addWindowListener(this);
 	}
 
-
 	public void setPausedBtnText(String text) {
 		pauseButton.setText(text);
 	}
@@ -201,34 +200,33 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 
 		// controlArea
 		controlArea = new JPanel();
-		
+
 		newButton = new JButton("New");
 		newButton.setActionCommand("New");
 		newButton.addActionListener(this);
 		newButton.setEnabled(false);
 		newButton.setFocusable(false); // Don't steal Frame's focus
-		
+
 		loadButton = new JButton("Load");
 		loadButton.setActionCommand("Load");
 		loadButton.addActionListener(this);
 		loadButton.setFocusable(false); // Don't steal Frame's focus
-		
+
 		exitButton = new JButton("Exit");
 		exitButton.setActionCommand("Exit");
 		exitButton.addActionListener(this);
 		exitButton.setFocusable(false); // Don't steal Frame's focus
-		
+
 		pauseButton = new JButton("Pause");
 		pauseButton.setActionCommand("Pause");
 		pauseButton.addActionListener(this);
 		pauseButton.setFocusable(false); // Don't steal Frame's focus
-		
-		
+
 		saveButton = new JButton("Save");
 		saveButton.setActionCommand("Save");
 		saveButton.addActionListener(this);
 		saveButton.setFocusable(false); // Don't steal Frame's focus
-		
+
 		controlArea.add(newButton);
 		controlArea.add(loadButton);
 		controlArea.add(saveButton);
@@ -377,6 +375,13 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		// uiplane.info_label.repaint();
 		if (ATC.debug_flag)
 			System.out.println("p.u.9"); // DEBUG
+		if (uiplane.radar_label != null) {
+			if (p.pos.y == 0) {
+				uiplane.radar_label.setVerticalTextPosition(JLabel.BOTTOM);
+			} else {
+				uiplane.radar_label.setVerticalTextPosition(JLabel.TOP);
+			}
+		}
 	}
 
 	protected String getPlaneText(Plane p) {
@@ -386,8 +391,9 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 
 	protected String getPlaneInfoText(Plane p) {
 		String rs = new String(" ");
-		rs += (new Character(p.getIdChar())).toString() + p.alt + "   " + p.takeoff_location.getName();
-		rs += "   "+p.destination.getName() + " ";
+		rs += (new Character(p.getIdChar())).toString() + p.alt + "   "
+				+ p.takeoff_location.getName();
+		rs += "   " + p.destination.getName() + " ";
 		if (p.dir_cmd != null) {
 			if (p.dir_cmd instanceof CircleCommand) {
 				rs += "C";
