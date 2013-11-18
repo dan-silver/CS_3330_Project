@@ -28,8 +28,15 @@ public class Plane extends MovingObj
   public DIRCommand dir_cmd = null;
   public StaticObj destination = null;
   public StaticObj takeoff_location = null;
+  private int spawnTime;
 
-  protected Plane() { super(); }
+  public int getSpawnTime() {
+	return spawnTime;
+}
+public void setSpawnTime(int spawnTime) {
+	this.spawnTime = spawnTime;
+}
+protected Plane() { super(); }
   public Plane( Plane ao ) 
     { 
       super( (MovingObj)ao ); 
@@ -149,4 +156,5 @@ public class Plane extends MovingObj
   {
     System.out.println( "#"+tick_count+"["+pos.x+":"+pos.y+":"+alt+"] ["+dir.x+":"+dir.y+"]" );
   }
+
 };

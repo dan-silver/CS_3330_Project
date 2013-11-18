@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.Object;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -66,6 +67,7 @@ public class ATCData extends Object {
 	}
 
 	protected Plane planes[];
+	protected ArrayList<Plane> planeHistory = new ArrayList<Plane>();
 	protected int next_plane = 0;
 
 	public Plane getPlane(int i) {
@@ -309,10 +311,16 @@ public class ATCData extends Object {
 				l_flag = false;
 
 				new_plane.id = plane_id;
+				new_plane.setSpawnTime(tick_count);
 				planes[plane_id] = new_plane;
 				next_plane = plane_id + 1;
 				if (next_plane >= max_plane)
 					next_plane %= max_plane;
+
+				// add to plane history
+				planeHistory.add(planes[plane_id]);
+				System.out.println("Added plane to history...");
+
 			} // end synchronized
 			atc_obj.getUI().PlaneNew(planes[plane_id]);
 		} // end if
@@ -426,19 +434,18 @@ public class ATCData extends Object {
 			e.printStackTrace();
 		}
 		String line = null;
-		for (Plane p : planes) {
+		for (Plane p : planeHistory) {
 			if (p != null) {
 				line = (p.takeoff_location.pos.x + " "
 						+ p.takeoff_location.pos.y + " " + p.destination.pos.x
-						+ " " + p.destination.pos.y
-						+" " +p.getIdChar());
+						+ " " + p.destination.pos.y + " " + p.getSpawnTime()
+						+ " " + p.getIdChar());
 				writer.println(line);
 				System.out.println(line);
 			}
 		}
-		
+
 		writer.close();
-		
 
 	}
 };
