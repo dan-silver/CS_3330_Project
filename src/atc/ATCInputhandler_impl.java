@@ -285,10 +285,14 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
              break;
         case 13:
         	if( c!= 'b' && c!= 'e' ) return false;
-        	if( c == 'b' )
-        		parse_state = 9;
-        	else
-        		parse_state = 11;
+        	if( c == 'b' ){
+        		parse_state = 10;
+                full_cmd_str += "beacon ";
+        	}
+        	else{
+        		parse_state = 12;
+            	full_cmd_str += "exit ";
+        	}
         	break;
       } //end switch
     } //end while

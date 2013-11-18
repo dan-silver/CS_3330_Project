@@ -129,7 +129,7 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 	// Planes
 	class UIPlane extends Object {
 		public JLabel radar_label;
-		public Label info_label;
+		public JLabel info_label;
 	};
 
 	Map planes = new HashMap(); // Char => UIPlane
@@ -303,9 +303,12 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		UIPlane uiplane = new UIPlane();
 		char id = p.getIdChar();
 		uiplane.radar_label = null;
-		uiplane.info_label = new Label((new Character(id)).toString());
+		uiplane.info_label = new JLabel((new Character(id)).toString());
 		if (ATC.debug_flag)
 			System.out.println("p.n.2"); // DEBUG
+		Font myFont = new Font( "Courier New", Font.PLAIN, 12 );
+		uiplane.info_label.setFont(myFont);
+		uiplane.info_label.setText(getPlaneInfoText(p));
 		infoArea.add(uiplane.info_label);
 		if (ATC.debug_flag)
 			System.out.println("p.n.2.1"); // DEBUG
@@ -344,6 +347,8 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 					System.out.println("p.u.3"); // DEBUG
 				uiplane.radar_label = new JLabel(getPlaneText(p),
 						dirToPlaneIcon(p.dir), JLabel.CENTER);
+				Font myFont = new Font("Courier New", Font.BOLD, 12);	
+				uiplane.radar_label.setFont(myFont);
 				uiplane.radar_label.setVerticalTextPosition(JLabel.TOP);
 				uiplane.radar_label.setHorizontalTextPosition(JLabel.CENTER);
 				uiplane.radar_label.setIconTextGap(text_gap);
@@ -354,6 +359,8 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 			} else {
 				if (ATC.debug_flag)
 					System.out.println("p.u.5"); // DEBUG
+				Font myFont = new Font("Courier New", Font.BOLD, 12);	
+				uiplane.radar_label.setFont(myFont);
 				uiplane.radar_label.setText(getPlaneText(p));
 				uiplane.radar_label.setIcon(dirToPlaneIcon(p.dir));
 				if (ATC.debug_flag)
@@ -366,7 +373,8 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 			if (ATC.debug_flag)
 				System.out.println("p.u.7"); // DEBUG
 		}
-
+		Font myFont = new Font("Courier New", Font.PLAIN, 12);	
+		uiplane.info_label.setFont(myFont);
 		uiplane.info_label.setText(getPlaneInfoText(p));
 		if (ATC.debug_flag)
 			System.out.println("p.u.8"); // DEBUG
