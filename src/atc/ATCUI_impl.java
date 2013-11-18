@@ -448,10 +448,13 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 
 	public void ready() {
 		newButton.setEnabled(true);
+		loadButton.setEnabled(true);
 	}
 
 	public void start() {
 		newButton.setEnabled(false);
+		loadButton.setEnabled(false);
+		
 		synchronized (this) {
 			if (!keyListenerAdded) {
 				addKeyListener(this);
@@ -464,6 +467,7 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		JOptionPane.showMessageDialog(null, gameOverMessage);
 
 		newButton.setEnabled(true);
+		loadButton.setEnabled(true);
 		synchronized (this) {
 			if (keyListenerAdded) {
 				removeKeyListener(this);

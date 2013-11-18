@@ -329,6 +329,8 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
     else if( "Load".equals( command ) )
     {
         reset();
+        
+        
         BufferedReader br = null;
         Long seed = null;
 		try {
@@ -347,6 +349,8 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
         }
 
         atc_obj.getData().seed = seed;
+        
+        
         atc_obj.getData().start();
     }
     return true;
