@@ -78,7 +78,7 @@ public class ATCData extends Object {
 	protected int safe_plane_count = 0;
 
 	 /*********************************************************************************************
-	 * 					Part of the changes for part E (das2c3)
+	 * 					Part of the changes for part F (das2c3)
 	 * A seed is defined and the rand variable is not initially instantiated.  They will be set when
 	 * the game starts.
 	 **********************************************************************************************/
@@ -103,7 +103,7 @@ public class ATCData extends Object {
 	}
 	
 	 /*********************************************************************************************
-	 * 					Part of the changes for part E (das2c3)
+	 * 					Part of the changes for part F (das2c3)
 	 * The generateSeed function was created to handle saving the game.  Instead of saving the
 	 * random ids of the planes and other game objects, just the seed is saved.
 	 **********************************************************************************************/
@@ -452,7 +452,7 @@ public class ATCData extends Object {
 	}
 
 	 /*********************************************************************************************
-	 * 					Part of the changes for part E (das2c3)
+	 * 					Part of the changes for part F (das2c3)
 	 * The save function writes the seed to a file called "planes.txt".  
 	 **********************************************************************************************/
 	
@@ -474,7 +474,7 @@ public class ATCData extends Object {
 
 	}
 	 /*********************************************************************************************
-	 * 					Part of the changes for part E (das2c3)
+	 * 					Part of the changes for part F (das2c3)
 	 * This new setSeed function is called from the load game function when a seed is read from a
 	 * file.
 	 **********************************************************************************************/

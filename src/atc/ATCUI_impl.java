@@ -234,7 +234,7 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		pauseButton.setFocusable(false); // Don't steal Frame's focus
 
 		 /*********************************************************************************************
-		 * 					Part of the changes for part E (das2c3)
+		 * 					Part of the changes for part F (das2c3)
 		 * The save and load buttons are instantiated.  They're both given action commands so they can
 		 * use the callbacks.
 		 **********************************************************************************************/
@@ -254,7 +254,7 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		controlArea.add(exitButton);
 		
 		 /*********************************************************************************************
-		 * 					Part of the changes for part E (das2c3)
+		 * 					Part of the changes for part F (das2c3)
 		 * The save and load buttons are added to the button bar.
 		 **********************************************************************************************/
 		controlArea.add(loadButton);
