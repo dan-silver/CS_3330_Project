@@ -434,6 +434,15 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		// uiplane.info_label.repaint();
 		if (ATC.debug_flag)
 			System.out.println("p.u.9"); // DEBUG
+
+
+
+		 /*********************************************************************************************
+		 * 					Changes for part A (das2c3)
+		 * The label is placed over the plane if the plane is on the top row.  The label is then reset
+		 * when the plane leaves the top row.
+		 **********************************************************************************************/
+
 		if (uiplane.radar_label != null) {
 			if (p.pos.y == 0) {
 				uiplane.radar_label.setIconTextGap(-15);
