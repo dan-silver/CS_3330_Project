@@ -77,6 +77,13 @@ public class ATCData extends Object {
 	protected int tick_count = 0;
 	protected int safe_plane_count = 0;
 
+	 /*********************************************************************************************
+	 * 					Part of the changes for part E (das2c3)
+	 * A seed is defined and the rand variable is not initially instantiated.  They will be set when
+	 * the game starts.
+	 **********************************************************************************************/
+	
+	
 	protected long seed;
 	protected Random rand = null;
 
@@ -94,7 +101,13 @@ public class ATCData extends Object {
 		super();
 		atc_obj = a;
 	}
-
+	
+	 /*********************************************************************************************
+	 * 					Part of the changes for part E (das2c3)
+	 * The generateSeed function was created to handle saving the game.  Instead of saving the
+	 * random ids of the planes and other game objects, just the seed is saved.
+	 **********************************************************************************************/
+	
 	public void generateSeed() {
 		seed = System.currentTimeMillis();
 		rand = new Random(seed);
@@ -438,6 +451,11 @@ public class ATCData extends Object {
 		atc_obj.getUI().CommandUpdate(s);
 	}
 
+	 /*********************************************************************************************
+	 * 					Part of the changes for part E (das2c3)
+	 * The save function writes the seed to a file called "planes.txt".  
+	 **********************************************************************************************/
+	
 	public void save() {
 		System.out.println("Generating report...");
 		PrintWriter writer = null;
@@ -455,7 +473,12 @@ public class ATCData extends Object {
 		writer.close();
 
 	}
-
+	 /*********************************************************************************************
+	 * 					Part of the changes for part E (das2c3)
+	 * This new setSeed function is called from the load game function when a seed is read from a
+	 * file.
+	 **********************************************************************************************/
+	
 	public void setSeed(Long seed2) {
 		seed = seed2;
 		System.out.println("A seed has been set: " + seed);

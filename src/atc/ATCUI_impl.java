@@ -217,18 +217,13 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		newButton.setEnabled(false);
 		newButton.setFocusable(false); // Don't steal Frame's focus
 
-		loadButton = new JButton("Load");
-		loadButton.setActionCommand("Load");
-		loadButton.addActionListener(this);
-		loadButton.setFocusable(false); // Don't steal Frame's focus
-
 		exitButton = new JButton("Exit");
 		exitButton.setActionCommand("Exit");
 		exitButton.addActionListener(this);
 		exitButton.setFocusable(false); // Don't steal Frame's focus
 		
 		 /*********************************************************************************************
-	 * 					Part of the changes for part D (das2c3)
+		 * 					Part of the changes for part D (das2c3)
 		 * A new pause button is instantiated with the text "Pause".  It's also given the command
 		 * "Pause" so that it can be tied to a function.
 		 **********************************************************************************************/
@@ -238,15 +233,32 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		pauseButton.addActionListener(this);
 		pauseButton.setFocusable(false); // Don't steal Frame's focus
 
+		 /*********************************************************************************************
+		 * 					Part of the changes for part E (das2c3)
+		 * The save and load buttons are instantiated.  They're both given action commands so they can
+		 * use the callbacks.
+		 **********************************************************************************************/
+		
+
+		loadButton = new JButton("Load");
+		loadButton.setActionCommand("Load");
+		loadButton.addActionListener(this);
+		loadButton.setFocusable(false); // Don't steal Frame's focus
+		
 		saveButton = new JButton("Save");
 		saveButton.setActionCommand("Save");
 		saveButton.addActionListener(this);
 		saveButton.setFocusable(false); // Don't steal Frame's focus
 		
 		controlArea.add(newButton);
+		controlArea.add(exitButton);
+		
+		 /*********************************************************************************************
+		 * 					Part of the changes for part E (das2c3)
+		 * The save and load buttons are added to the button bar.
+		 **********************************************************************************************/
 		controlArea.add(loadButton);
 		controlArea.add(saveButton);
-		controlArea.add(exitButton);
 		
 		 /*********************************************************************************************
 		 * 					Part of the changes for part D (das2c3)

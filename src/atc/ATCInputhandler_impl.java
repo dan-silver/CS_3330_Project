@@ -346,6 +346,12 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
     {
       atc_obj.pauseATC();
     }
+    /*********************************************************************************************
+	 * 					Part of the changes for part E (das2c3)
+	 * Two new cases where added, "Save" and "Load".  The save case writes the seed and the load
+	 * case reads the planes.txt file to get the saved seed.
+	 **********************************************************************************************/
+	
     else if( "Save".equals( command ) )
     {
         atc_obj.getData().save();
