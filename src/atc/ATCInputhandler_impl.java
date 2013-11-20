@@ -166,8 +166,6 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
             ((CircleCommand)cmd).turn = c=='r' ? Turn.RIGHT : Turn.LEFT;
           parse_state = 5;
           break;
-          
-          
          /***************************************************************************************************
       	 * 					Part of the Change for part (E) (ecgprc)
 		 * Redirected the parse case for "at" in the control string to a case I created to determine

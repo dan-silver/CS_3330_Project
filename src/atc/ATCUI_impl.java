@@ -127,6 +127,11 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 	JButton newButton, pauseButton, exitButton, saveButton, loadButton;
 
 	// Planes
+	 /*********************************************************************************************
+	 * 					Part of the Change for part (C) (ecgprc)
+	 * Changed this method to make the info_label an instance of class JLabel, as opposed to just
+	 * an instance of class Label. This allowed to change the font more easily
+	 **********************************************************************************************/
 	class UIPlane extends Object {
 		public JLabel radar_label;
 		public JLabel info_label;
@@ -297,15 +302,34 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		inputArea.setText(cmd_str);
 	}
 
+	/****************************************************************************************
+	 * 					Part of the Change for part (C) (ecgprc)
+	 * Modified this method to print out the JLabel info_label, in a different font to ensure
+	 * that the user can see the difference between an upper case (I) and a lower case (l).
+	 * Exact changes are detailed below.
+	 ***************************************************************************************/
 	public void PlaneNew(Plane p) {
 		if (ATC.debug_flag)
 			System.out.println("p.n.1"); // DEBUG
 		UIPlane uiplane = new UIPlane();
 		char id = p.getIdChar();
 		uiplane.radar_label = null;
+		 /*********************************************************************************************
+		 * 					Part of the Change for part (C) (ecgprc)
+		 * Changed this constructor to make the info_label an instance of class JLabel, as opposed to just
+		 * an instance of class Label. This allowed to change the font more easily
+		 **********************************************************************************************/
 		uiplane.info_label = new JLabel((new Character(id)).toString());
 		if (ATC.debug_flag)
 			System.out.println("p.n.2"); // DEBUG
+		
+		/*********************************************************************************************
+		 * 					Part of the Change for part (C) (ecgprc)
+		 * Created an instance of the Font class of type "Courier New", which I found was able to
+		 * easily distinguish between the two problematic letters. I then set the font for the
+		 * info_label to be of type "Courier New" in order to ensure my change was reflected on the
+		 * user interface.
+		 **********************************************************************************************/
 		Font myFont = new Font( "Courier New", Font.PLAIN, 12 );
 		uiplane.info_label.setFont(myFont);
 		uiplane.info_label.setText(getPlaneInfoText(p));
@@ -325,7 +349,14 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		if (ATC.debug_flag)
 			System.out.println("p.n.5"); // DEBUG
 	}
-
+	
+	
+	/**********************************************************************************************************
+	 * 					Part of the Change for part (C) (ecgprc)
+	 * Modified this method to print out the JLabel's info_label and radar_label in a different font to ensure
+	 * that the user can see the difference between an upper case (I) and a lower case (l).
+	 * Exact changes are detailed below.
+	 **********************************************************************************************************/
 	public void PlaneUpdate(Plane p) {
 		if (ATC.debug_flag)
 			System.out.println("p.u.1"); // DEBUG
@@ -347,6 +378,13 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 					System.out.println("p.u.3"); // DEBUG
 				uiplane.radar_label = new JLabel(getPlaneText(p),
 						dirToPlaneIcon(p.dir), JLabel.CENTER);
+				/*********************************************************************************************
+				 * 					Part of the Change for part (C) (ecgprc)
+				 * Created an instance of the Font class of type "Courier New", which I found was able to
+				 * easily distinguish between the two problematic letters. I then set the font for the
+				 * radar_label to be of type "Courier New" in order to ensure my change was reflected on the
+				 * user interface.
+				 **********************************************************************************************/
 				Font myFont = new Font("Courier New", Font.BOLD, 12);	
 				uiplane.radar_label.setFont(myFont);
 				uiplane.radar_label.setVerticalTextPosition(JLabel.TOP);
@@ -359,6 +397,12 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 			} else {
 				if (ATC.debug_flag)
 					System.out.println("p.u.5"); // DEBUG
+				/*********************************************************************************************
+				 * 					Part of the Change for part (C) (ecgprc)
+				 * Implemented the same change from above in this case as well to account for all possible
+				 * places that the radar_label is in use. Again, I created an instance of class Font of type
+				 * "Courier New" and set the font type for radar label accordingly.
+				 **********************************************************************************************/
 				Font myFont = new Font("Courier New", Font.BOLD, 12);	
 				uiplane.radar_label.setFont(myFont);
 				uiplane.radar_label.setText(getPlaneText(p));
@@ -373,6 +417,13 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 			if (ATC.debug_flag)
 				System.out.println("p.u.7"); // DEBUG
 		}
+		/*********************************************************************************************
+		 * 					Part of the Change for part (C) (ecgprc)
+		 * Created an instance of the Font class of type "Courier New", which I found was able to
+		 * easily distinguish between the two problematic letters. I then set the font for the
+		 * info_label to be of type "Courier New" in order to ensure my change was reflected on the
+		 * user interface.
+		 **********************************************************************************************/
 		Font myFont = new Font("Courier New", Font.PLAIN, 12);	
 		uiplane.info_label.setFont(myFont);
 		uiplane.info_label.setText(getPlaneInfoText(p));
@@ -397,10 +448,6 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 				+ (new Integer(p.alt)).toString();
 	}
 
-	/*****************************************************************************
-	 * 					Part of the Change for part (B) (ecgprc)
-	 * Changed this method to print out the value for the takeoff_location.
-	 ****************************************************************************/
 	
 	protected String getPlaneInfoText(Plane p) {
 		String rs = new String(" ");
