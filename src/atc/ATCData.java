@@ -67,7 +67,6 @@ public class ATCData extends Object {
 	}
 
 	protected Plane planes[];
-	protected ArrayList<Plane> planeHistory = new ArrayList<Plane>();
 	protected int next_plane = 0;
 
 	public Plane getPlane(int i) {
@@ -347,9 +346,6 @@ public class ATCData extends Object {
 				next_plane = plane_id + 1;
 				if (next_plane >= max_plane)
 					next_plane %= max_plane;
-
-				// add to plane history
-				planeHistory.add(planes[plane_id]);
 
 			} // end synchronized
 			atc_obj.getUI().PlaneNew(planes[plane_id]);
