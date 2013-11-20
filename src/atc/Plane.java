@@ -27,6 +27,11 @@ public class Plane extends MovingObj
   public ALTCommand alt_cmd = null;
   public DIRCommand dir_cmd = null;
   public StaticObj destination = null;
+  /*****************************************************************************
+   * 					Part of the Change for part (B) (ecgprc)
+   *  Declaration of the staticObj that will hold the value that I will later
+   *  print as the new (3rd) column for takeoff_location.
+   *****************************************************************************/
   public StaticObj takeoff_location = null;
   private int spawnTime;
 
@@ -45,11 +50,24 @@ protected Plane() { super(); }
       destination = ao.destination;
     }
 
+  /*****************************************************************************
+   * 					Part of the Change for part (B) (ecgprc)
+   *  I modified the constructor to accept another staticObj (takeoff_location)
+   *  so that I can later print out the data stored inside it for the new column.
+   *****************************************************************************/
   public Plane
     ( Position p, Direction d, int altitude, int i_speed, StaticObj des, StaticObj takeoff_location )
   {
     super( p, d, altitude, i_speed );
-	this.takeoff_location = takeoff_location;
+
+    /*************************************************************************
+     * 					Part of the	Change for part (B) (ecgprc)
+     *  Set the new instance variable I created (takeoff_location)
+     *  to the value of the StaticObj passed in by the constructor I modified
+     *  This variable was passed from Data.
+     *************************************************************************/
+    
+    this.takeoff_location = takeoff_location;
     if( altitude == 0 )
     {
       waiting_flag = true;

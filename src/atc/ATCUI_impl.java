@@ -399,6 +399,13 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 
 	protected String getPlaneInfoText(Plane p) {
 		String rs = new String(" ");
+		/*****************************************************************************
+		 * 					Part of the Change for part (B) (ecgprc)
+		 *	Print out the value for the takeoff_location that I created and stored
+		 *  in all of the plane objects in the file ATCData.java. The order for the output
+		 *  string is now. plane + altitude followed by take_off location and finally
+		 *  the final destination.
+		 *****************************************************************************/
 		rs += (new Character(p.getIdChar())).toString() + p.alt + "   "
 				+ p.takeoff_location.getName();
 		rs += "   " + p.destination.getName() + " ";

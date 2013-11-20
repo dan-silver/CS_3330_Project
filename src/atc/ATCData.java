@@ -304,6 +304,12 @@ public class ATCData extends Object {
 				if (ATC.debug_flag)
 					System.out.println("NP: found."); // DEBUG
 
+				/*****************************************************************************
+				 * 					Part of the Change for part (B) (ecgprc)
+				 *  Call the modified constructor and pass in o1, which was already in use
+				 *  by this method; The only change in the following line is simply passing
+				 *  in the value o1 that already existed.
+				 *****************************************************************************/
 				Plane new_plane = new Plane(o1.pos, o1.dir, o1.alt,
 						rand.nextInt(2) + 1, o2, o1);
 
@@ -401,7 +407,7 @@ public class ATCData extends Object {
 	}
 
 	protected int get_tick_ms() {
-		return 600;
+		return tick_ms;
 	}
 
 	public boolean setCommand(int id, Command cmd) {
