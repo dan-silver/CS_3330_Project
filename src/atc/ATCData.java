@@ -172,7 +172,12 @@ public class ATCData extends Object {
 
 	// Timer
 	java.util.Timer timer = null;
-
+	
+	/*********************************************************************************************
+	 * 					Part of the changes for part D (das2c3)
+	 * A boolean is created to keep track of the game state.
+	 **********************************************************************************************/
+	
 	public boolean paused = false;
 
 	class ATCTask extends java.util.TimerTask {
@@ -181,6 +186,11 @@ public class ATCData extends Object {
 		public ATCTask(ATCData d) {
 			data = d;
 		}
+		
+		/*********************************************************************************************
+		 * 					Part of the changes for part D (das2c3)
+		 * The run function was modified to only run the game logic if the game is not paused.
+		**********************************************************************************************/
 
 		public void run() {
 			try {

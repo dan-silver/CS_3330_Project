@@ -47,6 +47,11 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		addWindowListener(this);
 	}
 
+	 /*********************************************************************************************
+	 * 					Part of the changes for part D (das2c3)
+	 * This function was created so the pause button text can be changed. It's used to change the
+	 * text from "Pause" to "Paused".
+	 **********************************************************************************************/
 	public void setPausedBtnText(String text) {
 		pauseButton.setText(text);
 	}
@@ -221,7 +226,13 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		exitButton.setActionCommand("Exit");
 		exitButton.addActionListener(this);
 		exitButton.setFocusable(false); // Don't steal Frame's focus
-
+		
+		 /*********************************************************************************************
+	 * 					Part of the changes for part D (das2c3)
+		 * A new pause button is instantiated with the text "Pause".  It's also given the command
+		 * "Pause" so that it can be tied to a function.
+		 **********************************************************************************************/
+		
 		pauseButton = new JButton("Pause");
 		pauseButton.setActionCommand("Pause");
 		pauseButton.addActionListener(this);
@@ -231,12 +242,18 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 		saveButton.setActionCommand("Save");
 		saveButton.addActionListener(this);
 		saveButton.setFocusable(false); // Don't steal Frame's focus
-
+		
 		controlArea.add(newButton);
 		controlArea.add(loadButton);
 		controlArea.add(saveButton);
-		controlArea.add(pauseButton);
 		controlArea.add(exitButton);
+		
+		 /*********************************************************************************************
+		 * 					Part of the changes for part D (das2c3)
+		 * The new pause button is added to the controlArea, or the top row of buttons.
+		 **********************************************************************************************/
+		controlArea.add(pauseButton);
+		
 		getContentPane().add(controlArea, BorderLayout.NORTH);
 
 		pack();
