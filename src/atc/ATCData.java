@@ -245,7 +245,6 @@ public class ATCData extends Object {
 	 * Changed this method to send the object that contains the takeoff_location
 	 * to each plane created so that I can later print it out.
 	 ****************************************************************************/
-
 	protected void newPlane() {
 		int r = rand.nextInt(new_plane_chance);
 		if (ATC.debug_flag)

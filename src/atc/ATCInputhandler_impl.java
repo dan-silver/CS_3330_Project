@@ -82,7 +82,13 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
       return false;
     }
   }
+  
 
+  	/*********************************************************************************************
+	 * 					Part of the Change for part (E) (ecgprc)
+	 * Changed this method by adding additional cases to the command loop to add the ability for the
+	 * planes to turn at a particular exit. More comments below detail the changes.
+	 *********************************************************************************************/
   protected boolean parse( boolean full_flag )
   {
     if(ATC.debug_flag) //DEBUG
@@ -97,6 +103,8 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
     StaticObj objs[] = null, obj_to = null, obj_at = null;
 
     full_cmd_str = new String("");
+    
+    
 
     while( it.hasNext() && parse_state != 99 )
     {
@@ -158,6 +166,14 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
             ((CircleCommand)cmd).turn = c=='r' ? Turn.RIGHT : Turn.LEFT;
           parse_state = 5;
           break;
+          
+          
+         /***************************************************************************************************
+      	 * 					Part of the Change for part (E) (ecgprc)
+		 * Redirected the parse case for "at" in the control string to a case I created to determine
+		 * whether or not the user wishes to at a beacon or an exit. Previously this case automatically
+		 * redirected to case 9, which I left in the game so that the change is evident, but I do not use it.
+      	 ****************************************************************************************************/
         case 5: //before at clause
           if( c!='a' ) return false;
           full_cmd_str += "at ";
@@ -260,11 +276,13 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
           }
           parse_state = 99;
           break;
-        case 11:
-        	if ( c!= 'e') return false;
-        	full_cmd_str += "exit ";
-        	parse_state = 12;
-        	break;
+          /*********************************************************************************
+           *		Part of the Change for part (E) (ecgprc)     
+           *  Case 12 is a case I created to extend the exit clause I created (13) to be able to
+           *  handle the new command (trae#). Case 12 simply requests an exit number from the
+           *  user and makes use of the previously implemented logic for beacon turns in order
+           *  to execute the command. 
+           *********************************************************************************/
         case 12:
         	int exit_num;
             try { exit_num = Integer.parseInt( Character.toString(c) ); }
@@ -283,6 +301,13 @@ public class ATCInputhandler_impl extends Object implements ATCInputhandler
             }
             parse_state = 99;
              break;
+         /************************************************************************
+         *		Part of the Change for part (E) (ecgprc)     
+         *  Case 13 is a case I created to extend the at clause to be able to
+         *  handle the new command (e) or the previously created command (b).
+         *  Case 13 either redirects to case 10, which requests the beacon number,
+         *  or my created Case 12, which handles requests an exit number.
+         *************************************************************************/
         case 13:
         	if( c!= 'b' && c!= 'e' ) return false;
         	if( c == 'b' ){
