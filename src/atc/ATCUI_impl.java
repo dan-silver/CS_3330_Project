@@ -397,6 +397,11 @@ public class ATCUI_impl extends JFrame implements ATCUI, ActionListener,
 				+ (new Integer(p.alt)).toString();
 	}
 
+	/*****************************************************************************
+	 * 					Part of the Change for part (B) (ecgprc)
+	 * Changed this method to print out the value for the takeoff_location.
+	 ****************************************************************************/
+	
 	protected String getPlaneInfoText(Plane p) {
 		String rs = new String(" ");
 		/*****************************************************************************
